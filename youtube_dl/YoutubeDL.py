@@ -776,6 +776,8 @@ class YoutubeDL(object):
         extra_info is a dict containing the extra values to add to each result
         '''
 
+        print("I Love U: Hello World")
+        
         if not ie_key and force_generic_extractor:
             ie_key = 'Generic'
 
