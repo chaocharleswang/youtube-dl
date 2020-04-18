@@ -99,10 +99,16 @@ class FFmpegPostProcessor(PostProcessor):
             prefer_ffmpeg = self._downloader.params.get('prefer_ffmpeg', True)
             location = self._downloader.params.get('ffmpeg_location')
             
-            print("Charles: %s" % location)
+            print("Charles:1 %s" % location)
             
             if location is not None:
+                
+                print("Charles:2 %s" % location)
+                
                 if not os.path.exists(location):
+                    
+                    print("Charles:3 %s" % location)
+                    
                     self._downloader.report_warning(
                         'ffmpeg-location %s does not exist! '
                         'Continuing without avconv/ffmpeg.' % (location))
@@ -110,21 +116,37 @@ class FFmpegPostProcessor(PostProcessor):
                     return
                 elif not os.path.isdir(location):
                     basename = os.path.splitext(os.path.basename(location))[0]
+                    
+                    print("Charles:4 %s" % basename)
+                    
                     if basename not in programs:
+                        
+                        print("Charles:5 %s" % basename)
+                        
                         self._downloader.report_warning(
                             'Cannot identify executable %s, its basename should be one of %s. '
                             'Continuing without avconv/ffmpeg.' %
                             (location, ', '.join(programs)))
                         self._versions = {}
                         return None
+                    
                     location = os.path.dirname(os.path.abspath(location))
+                    
+                    print("Charles:6 %s" % location)
+                    
                     if basename in ('ffmpeg', 'ffprobe'):
                         prefer_ffmpeg = True
+                        
+                        print("Charles:7 %s" % location)
 
                 self._paths = dict(
                     (p, os.path.join(location, p)) for p in programs)
                 self._versions = dict(
                     (p, get_ffmpeg_version(self._paths[p])) for p in programs)
+                
+                print("Charles:8 %s" % self._paths)
+                print("Charles:9 %s" % self._versions)
+                
         if self._versions is None:
             self._versions = dict(
                 (p, get_ffmpeg_version(p)) for p in programs)
