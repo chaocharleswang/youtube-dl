@@ -147,9 +147,12 @@ class FFmpegPostProcessor(PostProcessor):
                 self._versions = dict(
                     (p, get_ffmpeg_version(self._paths[p])) for p in programs)
                 
-                print("Charles:9 %s" % self._versions["ffmpeg"])
+                print("Charles:10 %s" % self._versions["ffmpeg"])
                 
         if self._versions is None:
+            
+            print("Charles:11 %s" % self._versions["ffmpeg"])
+            
             self._versions = dict(
                 (p, get_ffmpeg_version(p)) for p in programs)
             self._paths = dict((p, p) for p in programs)
@@ -158,6 +161,7 @@ class FFmpegPostProcessor(PostProcessor):
             prefs = ('avconv', 'ffmpeg')
         else:
             prefs = ('ffmpeg', 'avconv')
+            
         for p in prefs:
             if self._versions[p]:
                 self.basename = p
@@ -167,6 +171,7 @@ class FFmpegPostProcessor(PostProcessor):
             prefs = ('avprobe', 'ffprobe')
         else:
             prefs = ('ffprobe', 'avprobe')
+            
         for p in prefs:
             if self._versions[p]:
                 self.probe_basename = p
