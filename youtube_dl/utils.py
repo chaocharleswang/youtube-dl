@@ -3660,7 +3660,9 @@ def get_exe_version(exe, args=['--version'],
             [encodeArgument(exe)] + args,
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()
-    except OSError:
+    except OSError as e:
+        print("Charles:9 %s" % str(e))
+        
         return False
     if isinstance(out, bytes):  # Python 2.x
         out = out.decode('ascii', 'ignore')
