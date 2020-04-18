@@ -141,11 +141,13 @@ class FFmpegPostProcessor(PostProcessor):
 
                 self._paths = dict(
                     (p, os.path.join(location, p)) for p in programs)
+                
+                print("Charles:8 %s" % self._paths["ffmpeg"])
+                
                 self._versions = dict(
                     (p, get_ffmpeg_version(self._paths[p])) for p in programs)
                 
-                print("Charles:8 %s" % self._paths)
-                print("Charles:9 %s" % self._versions)
+                print("Charles:9 %s" % self._versions["ffmpeg"])
                 
         if self._versions is None:
             self._versions = dict(
