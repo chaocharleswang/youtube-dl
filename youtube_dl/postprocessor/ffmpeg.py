@@ -98,6 +98,9 @@ class FFmpegPostProcessor(PostProcessor):
         if self._downloader:
             prefer_ffmpeg = self._downloader.params.get('prefer_ffmpeg', True)
             location = self._downloader.params.get('ffmpeg_location')
+            
+            print("Charles: %s" % location)
+            
             if location is not None:
                 if not os.path.exists(location):
                     self._downloader.report_warning(
